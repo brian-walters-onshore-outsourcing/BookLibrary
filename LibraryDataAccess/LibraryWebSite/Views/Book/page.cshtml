@@ -1,0 +1,92 @@
+﻿@model IEnumerable<LibraryWebSite.Models.VMBook>
+
+@{
+    ViewBag.Title = "Index of Books";
+}
+
+<h2>Index of Books</h2>
+<p>@Html.Partial("Paging") </p>
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table" id="TheTable">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ISBN)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BookName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Pages)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DaysOverdue)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.GenreName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ISBN)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BookName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Pages)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DaysOverdue)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.GenreName)
+                </td>
+                <td>
+                    @* Make.ActionLinks is a helper designed to place the "|" appropriatly
+                        for the items it ignores the first and last, and puts it in the middle
+                        regardless of if an item is hidden or not *@
+                    @Make.ActionLinks(
+
+                        Html.ActionLink("Edit", "Edit", new { id = item.BookID }),
+
+                        Html.ActionLink("Details", "Details", new { id = item.BookID }),
+
+                        Html.ActionLink("Delete", "Delete", new { id = item.BookID }),
+    @* This usage of Hide.UnlessInTheRole(role,mvcstring) will return
+        "" unless the role is met, otherwise the actionlink will be returned*@
+Hide.UnlessInTheRole("Create:ThisUserBorrowings",
+Html.ActionLink("Borrow", "Borrow", new { id = item.BookID }, new { @class = (item.CheckOuts > 0) ? "text-muted" : "", style = (item.CheckOuts > 0) ? "pointer-events:none; cursor:default;" : "" })),
+
+
+Hide.UnlessInTheRole("Create:AllUserBorrowings",
+Html.ActionLink("Lend", "Lend", new { id = item.BookID }, new { @class = (item.CheckOuts > 0) ? "text-muted" : "", style = (item.CheckOuts > 0) ? "pointer-events:none; cursor:default;" : "" })),
+
+
+
+Hide.UnlessInTheRole("View:AllUserBorrowings",
+Html.ActionLink("History", "History", new { id = item.BookID }))
+
+)
+
+
+
+
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+

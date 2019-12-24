@@ -1,0 +1,129 @@
+﻿@model IEnumerable<LibraryWebSite.Models.VMBook>
+@{
+    ViewBag.Title = "AjaxIndex";
+}
+@*this file is identical to AjaxAdvancedIndex EXCEPT it calls AjaxFastLoading instead of AjaxLoading  see line 61*@
+
+<h2>AjaxIndex</h2>
+
+<div class="container">
+    <br />
+    <div>
+        <table id="demoGrid" class="table table-striped table-bordered dt-responsive nowrap" width="100%" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.BookID)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ISBN)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.BookName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Pages)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.DaysOverdue)
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.GenreName)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+
+
+
+
+@section scripts {
+
+    <script type="text/javascript" language="javascript">
+
+
+        $(document).ready(function () {
+
+
+            $('#demoGrid').dataTable({
+                "lengthMenu": [[3, 6, 9, 50, 100, 400, -1], [3, 6, 9, 50, 100, 400, "all"]],
+                "processing": true,
+                "serverSide": true,
+                "filter": true,
+                "orderMulti": false,
+                "pageLength": 5,
+
+                "ajax": {
+                    "url": "/Book/AjaxLoading",
+                    "type": "POST",
+                    "datatype": "json"
+                },
+                "columnDefs":
+                    [
+                        {   /*bookid*/
+                            "targets": [0],
+                            "visible": false,
+                            "searchable": false
+                        },
+                        {    /* isbn*/
+                            "targets": [1],
+                            "searchable": true,
+                            "orderable": true
+                        },
+                        {    /* BookName*/
+                            "targets": [2],
+                            "searchable": true,
+                            "orderable": true
+                        },
+                        {     /* Pages*/
+                            "targets": [3],
+                            "searchable": false,
+                            "orderable": true
+                        },
+                        {    /* DaysOverdue*/
+                            "targets": [4],
+                            "searchable": false,
+                            "orderable": true
+                        },
+                        {    /* GenreName*/
+                            "targets": [5],
+                            "searchable": true,
+                            "orderable": true
+                        },
+                    ],
+                "columns":
+                    [
+                        { "data": "BookID", "name": "BookID", "autoWidth": true },
+                        { "data": "ISBN", "name": "ISBN", "autoWidth": true },
+                        { "data": "BookName", "name": "BookName", "autoWidth": true },
+                        { "data": "Pages", "name": "Pages", "autoWidth": true },
+                        { "data": "DaysOverdue", "name": "DaysOverdue", "autoWidth": true },
+                        { "data": "GenreName", "name": "GenreName", "autoWidth": true },
+                        //{
+                        //    "render": function (data, type, full, meta)
+                        //    {
+                        //        return '<a class="btn btn-info" href=/Book/Edit/'+full.BookID + '">Edit</a>';
+                        //    }
+                        //},
+                        //{
+
+                        //    "render": function(data, type, full, meta)
+                        //    {
+                        //        return '<a class="btn btn-danger" href=/Book/Delete'+full.BookID + '">Delete</a>';
+                        //    }
+                        //}
+
+                    ]
+            });
+
+
+        });
+
+
+    </script>
+}
+

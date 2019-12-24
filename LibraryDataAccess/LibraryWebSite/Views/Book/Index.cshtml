@@ -1,0 +1,106 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<div class="col-md-2">
+    @Html.ActionLink("All Index 500", "AllIndex", new { id = 500 })
+</div>
+<div class="col-md-2">
+    Client Processing
+</div>
+<div class="col-md-8">
+    500 Records are collected on Server, and then sent to Client.  All processing occurs on client
+</div>
+<div class="col-md-12>">
+    <p>Acceptable Performance</p>
+</div>
+<div class="col-md-12>">
+    <p>&nbsp;</p>
+</div>
+<div class="col-md-2">
+    @Html.ActionLink("All Index 5000", "AllIndex", new { id = 5000 })
+</div>
+<div class="col-md-2">
+    Client Processing
+</div>
+<div class="col-md-8">
+    5000 records are collected on Server, and then sent to Client.  All processing occurs on client
+</div>
+<div class="col-md-12>">
+    <p>Borderline Performance</p>
+</div>
+<div class="col-md-12>">
+    <p>&nbsp;</p>
+</div>
+<div class="col-md-2">
+    @Html.ActionLink("All Index 50,000", "AllIndex", new { id = 50000 })
+</div>
+<div class="col-md-2">
+    Client Processing
+</div>
+<div class="col-md-8">
+    50,000 records are collected on Server, and then sent to Client.  All processing occurs on client
+</div>
+<div class="col-md-12>">
+    <p>Warning: can take several minutes: Unacceptable Performance</p>
+</div>
+<div class="col-md-12>">
+    <p>&nbsp;</p>
+</div>
+<div class="col-md-2">
+    @Html.ActionLink("All Index 200,000+", "AllIndex", new { id = 0})
+</div>
+<div class="col-md-2">
+    Client Processing
+</div>
+<div class="col-md-8">
+    All 200,000+ records are collected on Server, and then sent to Client.  All processing occurs on client
+</div>
+<div class="col-md-12>">
+    <p>Warning: May take Tens of Minutes: Totally Unacceptable Performance</p>
+</div>
+<div class="col-md-12>">
+    <p>&nbsp;</p>
+</div>
+<div class="col-md-2">
+    @Html.ActionLink("Paging Index", "Page",new {page=1, count=5 })
+</div>
+<div class="col-md-2">
+    Server Paging
+</div>
+<div class="col-md-8">
+    Only the Paged data is collected on Server, and then sent to Client.  Client only sees page requested in the url string
+</div>
+<div class="col-md-12>">
+    <p>&nbsp;</p>
+</div>
+<div class="col-md-2">
+    @Html.ActionLink("Ajax Index", "AjaxIndex")
+</div>
+<div class="col-md-2">
+    Server Processing - All Records
+</div>
+<div class="col-md-8">
+    All the data is collected on the server for each Ajax Request, it is then filtered and sorted on the server, and only the correct subset of data is returned to the client
+</div>
+<div class="col-md-12>">
+    <p>Warning: Takes 10-20 seconds: Performance is Poor, but perhaps 'just ok'</p>
+</div>
+<div class="col-md-2">
+    @Html.ActionLink("Advanced Ajax Index", "AjaxAdvancedIndex")
+</div>
+<div class="col-md-2">
+    Smarter Server Processing - Selected Records
+</div>
+<div class="col-md-8">
+    Only the specified data is collected on the server for each Ajax Request using custom SQL.
+</div>
+<div class="col-md-12>">
+    <p>&nbsp;</p>
+</div>
+
+
+

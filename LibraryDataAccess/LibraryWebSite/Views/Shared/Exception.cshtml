@@ -1,0 +1,26 @@
+﻿@model Exception
+@{
+    ViewBag.Title = "Exception";
+
+
+    // this calls the version returning the id to present in message
+    int id = Logging.Logger.Log(Model, "MVC", 0);
+}
+
+<h2>Exception</h2>
+@if (Hide.UnlessInTheRole("View:Exception"))
+{
+    <text>
+    The following Exception occurred
+<hr />
+Log id:  @id<hr />
+<p>@Model</p>
+</text>
+}
+else
+{
+<text>
+    An unexpected error occured, please contact your support.  The log Identifier is: @id;
+</text>
+}
+

@@ -1,0 +1,58 @@
+﻿@model LibraryCommon.LogItem
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>LogItem</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.LogId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LogId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Time)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Time)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Message)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Message)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Layer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Layer)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Trace)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Trace)
+        </dd>
+
+
+
+    </dl>
+</div>
+<p>
+   
+    @Html.ActionLink("Back to List", "Index")
+</p>

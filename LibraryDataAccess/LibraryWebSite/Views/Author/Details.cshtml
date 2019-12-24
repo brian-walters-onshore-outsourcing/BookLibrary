@@ -1,0 +1,50 @@
+﻿@model LibraryWebSite.Models.VMAuthor
+
+@{
+    ViewBag.Title = "Details for an Author";
+}
+
+<h2>Details of @Model.AuthorName </h2>
+
+<div>
+    <h4>VMAuthor</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.AuthorName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AuthorName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AuthorDOB)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AuthorDOB)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AuthorLocation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AuthorLocation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Age)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Age)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.AuthorID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

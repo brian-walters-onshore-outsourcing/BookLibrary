@@ -1,0 +1,62 @@
+﻿@model LibraryWebSite.Models.VMBorrower
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>VMBorrower</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.BorrowerName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BorrowerName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BorrowerEMail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BorrowerEMail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BorrowerDOB)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BorrowerDOB)
+
+            @* RoleID is Hidden, so no DisplayNameFor is necessary*@
+       
+            @Html.DisplayFor(model => model.RoleID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RoleName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RoleName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Age)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Age)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.BorrowerID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,120 @@
+﻿@model IEnumerable<LibraryBusinessLogicLayer.BooksByGenreReportItem>
+
+@{
+    ViewBag.Title = "Books By Genre";
+    System.Text.StringBuilder pielabels = new System.Text.StringBuilder();
+    System.Text.StringBuilder data = new System.Text.StringBuilder();
+    bool first = true;
+}
+
+<h2>Books By Genre</h2>
+
+<div class="col-md-6">
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.GenreName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Count)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GenreName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Count)
+                </td>
+
+            </tr>
+            {
+                // build the items for the chart, lables and counts
+                if (first)
+                {
+                    // dont append , first time
+                }
+                else
+                {
+                    pielabels.Append(',');
+                }
+                pielabels.Append('"');
+                pielabels.Append(item.GenreName);
+                pielabels.Append('"');
+                if (first)
+                {
+                    first = false;
+                }
+                else
+                {
+                    data.Append(',');
+                }
+
+                data.Append(item.Count);
+
+            }
+        }
+
+
+    </table>
+</div>
+<div class="col-md-6" >
+    Books by Genre
+    <canvas id="piechart" ></canvas>
+</div>
+
+<p>
+
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+@{
+    MvcHtmlString PieLabelsMvc = new MvcHtmlString(pielabels.ToString());
+}
+
+@section scripts {
+    <script type="text/javascript" language="javascript">
+
+
+         $(document).ready(function () {
+
+
+
+             var ctx = document.getElementById("piechart").getContext('2d');
+             var myChart = new Chart(ctx, {
+                 type: 'bar',
+                 data: {
+                     labels: [@PieLabelsMvc],
+                     datasets: [{
+                         backgroundColor: [
+                             "#2ecc71",
+                             "#3498db",
+                             "#95a5a6",
+                             "#9b59b6"
+                             //"#f1c40f",
+                             //"#e74c3c",
+                             //"#34495e"
+                         ],
+                         label: "Genre",
+                         data: [@data]
+                     }]
+                 },
+                 options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+             });
+         });
+
+    </script>
+}
+

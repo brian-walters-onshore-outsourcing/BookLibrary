@@ -1,0 +1,90 @@
+﻿@model LibraryBusinessLogicLayer.OverdueReportItem
+
+@{
+    ViewBag.Title = "Overdue";
+}
+
+<h2>Overdue</h2>
+
+<div class="col-md-6">
+    <h4>OverdueReportItem</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NotOverDue)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NotOverDue)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OverdueBy10orLess)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OverdueBy10orLess)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OverdueMoreThan10and30orless)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OverdueMoreThan10and30orless)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OverdueMoreThan30)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OverdueMoreThan30)
+        </dd>
+
+    </dl>
+</div>
+<div class="col-md-6" style="border-width:10px; border-color:red;">
+    Days Overdue
+    <canvas id="piechart" style="border-width:20px; border-color:green;"></canvas>
+</div>
+
+<p>
+
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+@{ 
+    string data = $"{Model.NotOverDue},{Model.OverdueBy10orLess},{Model.OverdueMoreThan10and30orless},{Model.OverdueMoreThan30}";
+}
+
+@section scripts {
+     <script type="text/javascript" language="javascript">  
+    
+         $(document).ready(function () {
+
+
+
+             var ctx = document.getElementById("piechart").getContext('2d');
+             var myChart = new Chart(ctx, {
+                 type: 'pie',
+                 data: {
+                     labels: [">=0", "0>=10", "10>=30", "30>"],
+                     datasets: [{
+                         backgroundColor: [
+                             "#2ecc71",
+                             "#3498db",
+                             "#95a5a6",
+                             "#9b59b6"
+                             //"#f1c40f",
+                             //"#e74c3c",
+                             //"#34495e"
+                         ],
+                         data: [@data]
+                     }]
+                 }
+             });
+         });
+
+    </script>
+}

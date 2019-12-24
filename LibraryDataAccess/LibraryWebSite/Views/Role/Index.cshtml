@@ -1,0 +1,63 @@
+﻿@model IEnumerable<LibraryWebSite.Models.VMRole>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.RoleName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreateOperation)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UpdateOperation)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DeleteOperation)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ListOperation)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ViewOperation)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.RoleName)
+        </td>
+        <td style="word-wrap: break-word;min-width: 160px;max-width: 160px;">
+            @Html.DisplayFor(modelItem => item.CreateOperation)
+        </td>
+        <td style="word-wrap: break-word;min-width: 160px;max-width: 160px;">
+            @Html.DisplayFor(modelItem => item.UpdateOperation)
+        </td>
+        <td style="word-wrap: break-word;min-width: 160px;max-width: 160px;">
+            @Html.DisplayFor(modelItem => item.DeleteOperation)
+        </td>
+        <td style="word-wrap: break-word;min-width: 160px;max-width: 160px;">
+            @Html.DisplayFor(modelItem => item.ListOperation)
+        </td>
+        <td style="word-wrap: break-word;min-width: 160px;max-width: 160px;">
+            @Html.DisplayFor(modelItem => item.ViewOperation)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.RoleID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.RoleID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.RoleID })
+        </td>
+    </tr>
+}
+
+</table>

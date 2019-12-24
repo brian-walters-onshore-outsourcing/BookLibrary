@@ -1,0 +1,83 @@
+﻿@model IEnumerable<LibraryCommon.LogItem>
+
+@{
+    ViewBag.Title = "Index";
+}
+<p>.</p><p>.</p><p>.</p><p>.</p>
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table" id="TheTable">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.LogId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Time)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Layer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Message)
+            </th>
+            <th></th>
+
+
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.LogId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Time)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Layer)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Message)
+            </td>
+            <td>
+
+                @Html.ActionLink("Details", "Details", new {  id=item.LogId }) 
+
+            </td>
+        </tr>
+    
+
+        }
+    </tbody>
+</table>
+
+
+@section scripts {
+
+    <script type="text/javascript" language="javascript">
+
+
+        $(document).ready(function () {
+
+            $('#TheTable').DataTable(
+                {
+                    "lengthMenu":[[3,10,30,100,-1],["Three","Ten","Thirty",100,"all"]]
+                }
+
+            );
+
+
+            });
+
+
+    </script>
+}
+

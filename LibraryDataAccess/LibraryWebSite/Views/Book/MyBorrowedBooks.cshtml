@@ -1,0 +1,111 @@
+﻿@model IEnumerable<LibraryWebSite.Models.VMBorrowing>
+
+@{
+    ViewBag.Title = "My Borrowed Books";
+}
+
+<h2>Books I Have Borrowed</h2>
+
+
+<table class="table">
+    <tr>
+        
+        <th>
+            @Html.DisplayNameFor(model => model.BookName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ISBN)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Pages)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        
+        <th>
+            @Html.DisplayNameFor(model => model.GenreName)
+        </th>
+        
+        <th>
+            @Html.DisplayNameFor(model => model.BorrowerName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BorrowerEMail)
+        </th>
+        
+       
+        <th>
+            @Html.DisplayNameFor(model => model.RoleName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DueDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ReturnedDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Rating)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.isCheckedOut)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DaysLeft)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+       
+        <td>
+            @Html.DisplayFor(modelItem => item.BookName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ISBN)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Pages)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Price)
+        </td>
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.GenreName)
+        </td>
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.BorrowerName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BorrowerEMail)
+        </td>
+        
+       
+        <td>
+            @Html.DisplayFor(modelItem => item.RoleName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DueDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ReturnedDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Rating)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.isCheckedOut)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DaysLeft)
+        </td>
+        <td>
+            @Html.ActionLink("Return", "ReturnBook", new { id=item.BorrowingID }) 
+        </td>
+    </tr>
+}
+
+</table>

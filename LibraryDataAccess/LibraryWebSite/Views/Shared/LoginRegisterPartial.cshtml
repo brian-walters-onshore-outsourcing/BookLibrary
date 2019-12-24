@@ -1,0 +1,13 @@
+﻿@if (User.Identity.IsAuthenticated)
+{
+    string data = User.Identity.AuthenticationType;
+    string username = User.Identity.Name;
+
+    <li>@Html.ActionLink(data, "Index", "Home")</li>
+    <li>@Html.ActionLink("Logout", "Logout", "Home")</li>
+}
+else
+{
+    <li>@Html.ActionLink("Register", "Register", "Home")</li>
+    <li>@Html.ActionLink("Login", "Login", "Home")</li>
+}
