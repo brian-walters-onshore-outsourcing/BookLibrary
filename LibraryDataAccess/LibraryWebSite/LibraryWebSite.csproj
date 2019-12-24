@@ -474,6 +474,10 @@
     <Content Include="Views\Shared\ItemNotFound.cshtml" />
     <Content Include="Views\Shared\Paging.cshtml" />
     <Content Include="Views\Book\AllIndex.cshtml" />
+    <Content Include="Views\Home\AlreadyVerified.cshtml" />
+    <Content Include="Views\Home\Verify.cshtml" />
+    <Content Include="Views\Home\VerifySuccess.cshtml" />
+    <Content Include="Views\Home\VerifyFailed.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

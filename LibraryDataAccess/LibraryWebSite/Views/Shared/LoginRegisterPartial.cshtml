@@ -3,7 +3,7 @@
     string data = User.Identity.AuthenticationType;
     string username = User.Identity.Name;
 
-    <li>@Html.ActionLink(data, "Index", "Home")</li>
+    <li>@Html.ActionLink(data, "Verify", "Home")</li>
     <li>@Html.ActionLink("Logout", "Logout", "Home")</li>
 }
 else

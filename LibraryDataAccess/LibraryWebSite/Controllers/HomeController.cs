@@ -12,6 +12,67 @@ namespace LibraryWebSite.Controllers
 {
     public class HomeController : Controller
     {
+        public ActionResult VerifySuccess()
+        {
+            return View();
+        }
+        public ActionResult VerifyLink(string EMail, string id)
+        {
+            try
+            {
+                using (Context ctx = new Context())
+                {
+                    var u = ctx.BorrowerSecuredFindByEMail(EMail);
+                    if (u == null)
+                    {
+                        return View("VerifyFailed");
+                    }
+                    if (u.Salt.Equals(id))
+                    {
+                        u.RoleID = MagicConstants.Viewer;
+                        ctx.BorrowerUpdateJust(u.BorrowerID,u);
+                        string auth = User.Identity.AuthenticationType;
+
+                        string[] data = auth.Split('|');
+                        Session["AUTHMethod"] = $"{data[0]}|{data[1]}|{data[2]}|{data[3]}|{MagicConstants.ViewerString}";
+                        return RedirectToAction("VerifySuccess");
+                    }
+                    else
+                    {
+                        return View("VerifyFailed");
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                return View("Exception", ex);
+            }
+        }
+        [MustBeLoggedIn]
+        public ActionResult Verify()
+        {
+            try
+            {
+                using (Context ctx = new Context())
+                {
+                    var s = Authentication.GetCurrentUser(ctx) as BorrowerSecured ;
+                   
+                    if (s.RoleID == MagicConstants.DefaultRole)
+                    {
+                        return View(s);
+                    }
+                    else
+                    {
+                        return View("AlreadyVerified");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                return View("Exception", ex);
+
+            }
+        }
         [MustBeLoggedIn]
         public ActionResult HashAccount()
         {

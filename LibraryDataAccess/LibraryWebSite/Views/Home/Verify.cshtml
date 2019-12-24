@@ -1,0 +1,7 @@
+﻿@model LibraryCommon.BorrowerSecured
+
+You are being asked to verify your account.  This message was sent to:
+<p>@Model.BorrowerEMail</p>
+
+
+Please click @Html.ActionLink("Here","VerifyLink",new {id= Model.Salt, EMail=Model.BorrowerEMail }) to verify your account.

@@ -28,6 +28,8 @@ namespace LibraryWebSite.Models
             return rv;
         }
 
+  
+
         // this function returns true if the current user has hashed passwords
         // and false if their passwords are in cleartext
         // cleartext is told when the SALT contains "cleartext"
