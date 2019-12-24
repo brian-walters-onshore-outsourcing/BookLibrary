@@ -4,6 +4,8 @@
     int PageSize = ViewBag.PageSize;
     int TotalCount = ViewBag.TotalCount;
     int TotalPageButtonCount = ((0 == TotalCount % PageSize) ? 0 : 1) + TotalCount / PageSize;
+    int ActualButtonCount = (10 < TotalPageButtonCount) ? 10 : TotalPageButtonCount;
+    int number =  TotalPageButtonCount - ActualButtonCount ;
 
 }
 <p>
@@ -31,11 +33,15 @@
 </p>
 <p>
     @{
-        for (int i = 1; i <= TotalPageButtonCount; i++)
+        for (int i = 1; i <= ActualButtonCount; i++)
         {
             string classstring = (i == PageNumber) ? "btn btn-sm btn-success glyphicon glyphicon-star-empty" : "btn btn-sm btn-normal glyphicon glyphicon-asterisk";
             @Html.ActionLink($"-Page {i}-", "Page", new { page = i, count = PageSize }, new { @class = classstring });
 
+        }
+        if (ActualButtonCount != TotalPageButtonCount)
+        {
+            <text> @number Buttons Truncated</text>
         }
     }
 </p>
